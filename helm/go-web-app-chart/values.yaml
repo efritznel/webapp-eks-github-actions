@@ -8,7 +8,7 @@ image:
   repository: efritznel/webapp-eks-github-actions
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "23025979608"
+  tag: "23026763609"
 
 ingress:
   enabled: false
