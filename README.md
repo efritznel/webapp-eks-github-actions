@@ -46,6 +46,32 @@ docker push efritznel/webapp-eks-github-actions:v1
 	```
 	5. Test the website is working from the cluster, then delete everything. We will setup HELM and CI/CD
 
+# Stage 3: Helm Configuration
+	1. Create a folder Helm
+	
+	2. Inside the folder run the command:
+	```bash
+		helm create go-web-app-chart
+	```
+	3. Inside templates: copy all the manifest files, setup values.yaml
+	
+		NB. we declared image in deployment.yaml like this:
+		```bash
+		image: efritznel/webapp-eks-github-actions:{{ .Values.image.tag }}
+		```	
+		and declared the the value in values.yaml
+		```bash
+		image:
+			repository: efritznel/webapp-eks-github-actions
+			pullPolicy: IfNotPresent
+			# Overrides the image tag whose default is the chart appVersion.
+			tag: "23026999433"
+		```	
+	4. run the helm command below to test the application then delete everything 
+		```bash
+		helm install webapp /go-web-app-chart 
+		helm uninstall webapp
+		```	
 
 ## Looks like this
 
