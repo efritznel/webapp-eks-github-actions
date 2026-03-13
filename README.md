@@ -74,6 +74,21 @@ docker push efritznel/webapp-eks-github-actions:v1
 		helm install webapp /go-web-app-chart 
 		helm uninstall webapp
 		```	
+# Stage 4: CI with Github_actions
+
+	1. Build and test the App
+	
+	2. Static code analysis
+	
+	3. Docker image is created and pushed
+	
+	4. Update Helm "Values.yaml" tag with the new image
+
+# Stage 5: CD - ArgoCD
+
+	1. Pull Helm chart
+	
+	2. Deploy the application to the EKS cluster
 
 ## Looks like this
 
