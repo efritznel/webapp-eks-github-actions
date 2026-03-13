@@ -41,7 +41,7 @@ docker push efritznel/webapp-eks-github-actions:v1
 	3. Deployed them using kubectl
 	
 	4. Deployed the Ingress Controller type nginx
-	```bash
+	```yaml
 	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/aws/deploy.yaml
 	```
 	5. Test the website is working from the cluster, then delete everything. We will setup HELM and CI/CD
