@@ -281,6 +281,9 @@ GitHub Actions	                        CI Pipeline
 ArgoCD	                                GitOps Deployment
 NGINX Ingress	                        External Access
 ```
+
+Finally access the website: http://go-web-app.local/courses
+
 ![Website](https://github.com/efritznel/webapp-eks-github-actions/blob/main/static/images/golang-website.JPG)
 
 
