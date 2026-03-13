@@ -33,6 +33,19 @@ docker run -p 8080:8080 -it efritznel/webapp-eks-github-actions:v1
 docker push efritznel/webapp-eks-github-actions:v1
 ```
 
+# Stage 2: Setup EKS cluster
+	1. Created VPC and EKS cluster using Terraform
+	
+	2. Created a folder K8s with all the manifest file (Deployment, Service, Ingress)
+	
+	3. Deployed them using kubectl
+	
+	4. Deployed the Ingress Controller type nginx
+	```bash
+		kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/aws/deploy.yaml
+	```
+	5. Test the website is working from the cluster, then delete everything. We will setup HELM and CI/CD
+
 
 ## Looks like this
 
