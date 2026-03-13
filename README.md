@@ -51,7 +51,7 @@ docker push efritznel/webapp-eks-github-actions:v1
 	
 	2. Inside the folder run the command:
 	```bash
-		helm create go-web-app-chart
+	helm create go-web-app-chart
 	```
 	3. Inside templates: copy all the manifest files, setup values.yaml
 	
