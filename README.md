@@ -63,46 +63,52 @@ The server will start on port 8080.
 Access the application:
 
 http://localhost:8080/courses
-Stage 1 — Containerization
+
+# Stage 1 — Containerization
 
 The application is containerized using a multi-stage Docker build.
 
 This approach ensures:
 
-Smaller container image
+1. Smaller container image
 
-Reduced attack surface
+2. Reduced attack surface
 
-Faster deployment
+3. Faster deployment
 
-Dockerfile Strategy
+# Dockerfile Strategy
 
 Stage 1:
 
-Uses a Golang base image to build the binary.
+1. Uses a Golang base image to build the binary.
 
 Stage 2:
 
-Uses a Distroless image to run the compiled binary.
+2. Uses a Distroless image to run the compiled binary.
 
 This improves:
 
-Security
+1. Security
 
-Image size
+2. Image size
 
-Performance
+3. Performance
 
-Build the Docker Image
+# Build the Docker Image
+```yaml
 docker build -t efritznel/webapp-eks-github-actions:v1 .
-Test the Container
+```
+# Test the Container
+```yaml
 docker run -p 8080:8080 -it efritznel/webapp-eks-github-actions:v1
-
+```
 Verify the application is accessible locally.
 
-Push Image to DockerHub
+# Push Image to DockerHub
+```yaml
 docker push efritznel/webapp-eks-github-actions:v1
-Stage 2 — EKS Infrastructure Setup
+```
+# Stage 2 — EKS Infrastructure Setup
 
 The Kubernetes infrastructure is provisioned using Terraform.
 
