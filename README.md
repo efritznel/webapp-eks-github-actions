@@ -137,140 +137,150 @@ terraform apply
 Kubernetes manifests were initially deployed manually for validation.
 
 A directory called k8s/ contains the following resources:
-
+```yaml
 k8s/
  ├── deployment.yaml
  ├── service.yaml
  └── ingress.yaml
-
+```
 Resources deployed:
 
-Deployment
+1. Deployment
 
-Service
+2. Service
 
-Ingress
+3. Ingress
 
-Deploy Resources
+# Deploy Resources
+```yaml
 kubectl apply -f k8s/
-Install NGINX Ingress Controller
+```
+# Install NGINX Ingress Controller
 
 To expose the application externally, the NGINX Ingress Controller is deployed.
-
+```yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.1/deploy/static/provider/aws/deploy.yaml
-
+```
 Verify the ingress controller:
-
+```yaml
 kubectl get pods -n ingress-nginx
-
+```
 Once verified, the manual deployment is removed before implementing Helm and CI/CD automation.
 
-Stage 4 — Helm Chart Configuration
+# Stage 4 — Helm Chart Configuration
 
 Helm is used to package and template the Kubernetes deployment.
 
 Helm enables:
 
-Versioned releases
+1. Versioned releases
 
-Reusable deployment templates
+2. Reusable deployment templates
 
-Environment-specific configuration
+3. Environment-specific configuration
 
-Create Helm Chart
+# Create Helm Chart
+```yaml
 mkdir Helm
 cd Helm
 helm create go-web-app-chart
-
+```
 Generated chart structure:
-
+```yaml
 go-web-app-chart
  ├── Chart.yaml
  ├── values.yaml
  ├── charts/
  └── templates/
-Configure Helm Templates
+```
+# Configure Helm Templates
 
 The templates directory contains the Kubernetes resources:
-
+```yaml
 templates/
  ├── deployment.yaml
  ├── service.yaml
  ├── ingress.yaml
-
+```
 The Docker image is dynamically defined using Helm variables.
 
-deployment.yaml
+# deployment.yaml
+```yaml
 image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
 imagePullPolicy: {{ .Values.image.pullPolicy }}
-values.yaml
+```
+# values.yaml
+```yaml
 image:
   repository: efritznel/webapp-eks-github-actions
   pullPolicy: IfNotPresent
   tag: "23026999433"
-
+```
 This design allows the CI pipeline to update only the image tag during deployments.
 
-Test Helm Deployment
+# Test Helm Deployment
 
 Install the application:
-
+```yaml
 helm install webapp ./go-web-app-chart
-
+```
 Verify deployment:
-
+```yaml
 kubectl get pods
 kubectl get svc
-
+```
 Remove the release:
-
+```yaml
 helm uninstall webapp
-Stage 5 — Continuous Integration (GitHub Actions)
+```
+# Stage 5 — Continuous Integration (GitHub Actions)
 
 GitHub Actions handles the CI pipeline.
 
 Pipeline stages:
 
-Build the Golang application
+1. Build the Golang application
 
-Run unit tests
+2. Run unit tests
 
-Perform static code analysis
+3. Perform static code analysis
 
-Build Docker image
+4. Build Docker image
 
-Push image to DockerHub
+5. Push image to DockerHub
 
-Update Helm values.yaml with new image tag
+6. Update Helm values.yaml with new image tag
 
 This ensures every commit produces a new deployable container image.
 
-Stage 6 — Continuous Deployment with ArgoCD
+# Stage 6 — Continuous Deployment with ArgoCD
 
 ArgoCD implements a GitOps deployment model.
 
 Workflow:
 
-ArgoCD monitors the Git repository.
+1. ArgoCD monitors the Git repository.
 
-When Helm values are updated, ArgoCD detects changes.
+2. When Helm values are updated, ArgoCD detects changes.
 
-ArgoCD pulls the Helm chart.
+3. ArgoCD pulls the Helm chart.
 
-ArgoCD deploys the updated application to EKS.
+4. ArgoCD deploys the updated application to EKS.
 
 This ensures Kubernetes clusters remain fully synchronized with Git state.
 
-Technologies Used
-Technology	Purpose
-Golang	Web Application
-Docker	Containerization
-Terraform	Infrastructure as Code
-Amazon EKS	Kubernetes Platform
-Helm	Kubernetes Packaging
-GitHub Actions	CI Pipeline
-ArgoCD	GitOps Deployment
-NGINX Ingress	External Access
+# Technologies Used
+```yaml
+Technology	                        Purpose
+Golang	                                Web Application
+Docker	                                Containerization
+Terraform	                        Infrastructure as Code
+Amazon EKS	                        Kubernetes Platform
+Helm	                                Kubernetes Packaging
+GitHub Actions	                        CI Pipeline
+ArgoCD	                                GitOps Deployment
+NGINX Ingress	                        External Access
+```
 ![Website](https://github.com/efritznel/webapp-eks-github-actions/blob/main/static/images/golang-website.JPG)
 
 
