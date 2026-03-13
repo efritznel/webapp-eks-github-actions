@@ -1,22 +1,22 @@
-Go Web Application – EKS CI/CD Deployment
+# Go Web Application – EKS CI/CD Deployment
 
 This project demonstrates a complete DevOps workflow for deploying a Golang web application to Amazon EKS using modern cloud-native tools and practices.
 
 The pipeline includes:
 
-Containerization with Docker
+1. Containerization with Docker
 
-Infrastructure provisioning with Terraform
+2. Infrastructure provisioning with Terraform
 
-Kubernetes deployment using Helm
+3. Kubernetes deployment using Helm
 
-CI pipeline with GitHub Actions
+4. CI pipeline with GitHub Actions
 
-GitOps deployment using ArgoCD
+5. GitOps deployment using ArgoCD
 
 The goal of this project is to demonstrate a production-style CI/CD pipeline and GitOps workflow for Kubernetes workloads on AWS.
 
-Architecture Overview
+# Architecture Overview
 
 The application follows a typical cloud-native deployment architecture:
 
@@ -43,7 +43,8 @@ Amazon EKS Cluster
         │
         ▼
 Kubernetes Pods running Go Web Application
-Application Overview
+
+# Application Overview
 
 The application is a simple web server written in Golang using the built-in net/http package.
 
