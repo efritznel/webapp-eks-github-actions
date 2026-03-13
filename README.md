@@ -19,7 +19,7 @@ The goal of this project is to demonstrate a production-style CI/CD pipeline and
 # Architecture Overview
 
 The application follows a typical cloud-native deployment architecture:
-
+```yaml
 Developer → GitHub Repository
         │
         │  (Push Code)
@@ -43,7 +43,7 @@ Amazon EKS Cluster
         │
         ▼
 Kubernetes Pods running Go Web Application
-
+```
 # Application Overview
 
 The application is a simple web server written in Golang using the built-in net/http package.
