@@ -53,11 +53,11 @@ It exposes a web endpoint that returns application content when accessed through
 Run the application locally
 
 Build and run the application:
-
+```yaml
 go build -o main .
 go run main.go
 ./main
-
+```
 The server will start on port 8080.
 
 Access the application:
