@@ -114,23 +114,25 @@ The Kubernetes infrastructure is provisioned using Terraform.
 
 Terraform creates:
 
-VPC
+1. VPC
 
-Public and Private Subnets
+2. Public and Private Subnets
 
-Internet Gateway
+3. Internet Gateway
 
-NAT Gateway
+4. NAT Gateway
 
-Amazon EKS Cluster
+5. Amazon EKS Cluster
 
-Worker Nodes
+6. Worker Nodes
 
-Infrastructure Deployment
+# Infrastructure Deployment
+```yaml
 terraform init
 terraform plan
 terraform apply
-Stage 3 — Kubernetes Deployment
+```
+# Stage 3 — Kubernetes Deployment
 
 Kubernetes manifests were initially deployed manually for validation.
 
