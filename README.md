@@ -286,4 +286,7 @@ Finally access the website: http://go-web-app.local/courses
 
 ![Website](https://github.com/efritznel/webapp-eks-github-actions/blob/main/static/images/golang-website.JPG)
 
+# Diagram
+![Website](https://github.com/efritznel/webapp-eks-github-actions/blob/main/static/images/Diagram.png)
+
 
