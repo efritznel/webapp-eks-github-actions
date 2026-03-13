@@ -13,9 +13,12 @@ go run main.go
 ```
 The server will start on port 8080. You can access it by navigating to `http://localhost:8080/courses` in your web browser.
 
-Stage 1 Containerization
+# Stage 1 Containerization
+
 Create a multi stage Dockefile
+
 	1. stage 1 a normal base image
+	
 	2. stage 2 a distroless image (security & lightweght)
 
 Build the image 
